@@ -1,0 +1,364 @@
+<!--
+Mobile web development 
+Template for General purpose html5 page with JQuery Mobile
+Created by: Karan Sharma
+email:      ksharma6452@conestogac.on.ca
+-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <link rel="icon" href="img/perfumeBottle1.png" type="image/x-icon">
+        <script src="js/lib/jquery-2.1.4.js"></script>
+        <script src="js/lib/jquery.validate.js"></script>
+        <script src="js/lib/jquery.mobile-1.4.5.js"></script>
+        <link rel="stylesheet" href="css/lib/jquery.mobile-1.4.5.css">
+        <script src="js/global.js"></script>
+        <script src="js/util.js"></script>
+        <script src="js/Facade.js"></script>
+        <script src="js/DAL.js"></script>
+        <script src="js/database.js"></script>
+        <link rel="stylesheet" href="css/mystyle.css">
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvItECl0IDJEUHdTnMmblAAIZFPXj4HHM"
+                type="text/javascript"></script>
+        <script src="js/geo.js"></script>
+    </head>
+    <body>
+
+        <!--home page-->
+        <div data-role="page" id="pageHome">
+            <header data-role="header" data-position="fixed" data-theme="b">
+                <h1>Home</h1>
+                <div data-role="navbar" data-iconpos="top">
+                    <ul>
+                        <li><a href="#pageHome" data-icon="home" data-theme="b" class="ui-btn-active ui-state-persist"
+                        >Home</a></li>
+                        <li><a href="#pageAdd" data-icon="plus" data-theme="b">Add Product</a></li>
+                        <li><a href="#pageProduct" data-icon="grid" data-theme="b">Products</a></li>
+                        <li><a href="#pageLocations" data-icon="plus" data-theme="b">Our Locations</a></li>
+                        <li><a href="#pageAbout" data-icon="user" data-theme="b">About</a></li>
+                    </ul>
+                </div>
+            </header>
+
+            <section data-role="content">
+                <div style="float: left">
+                    <h1><span style="text-align: center;">Karan's Perfume Collection</span></h1>
+
+                    <p>Welcome to my Perfume Collection application.</p>
+                    <p>Here you can add a perfume to the collection, update or even delete it. This is fun,<br> not only that, you can also use this application in different ways like adding different product and making a shopping list.</p>
+                </div>
+                <img src="img/perfumeBottle1.png" alt="perfume bottle icon" height="500" width="500">
+                <div data-role="collapsible" data-inset="false" data-theme="b" data-content-theme="b">
+                    <h3>Do Checkout my Personal Favourite Perfumes!</h3>
+                    <ul data-role="listview">
+                        <li><a href="https://www.valentino.com/en-ca/men/fragrances">Valentino</a></li>
+                        <li><a href="https://www.zara.com/ca/en/man-accessories-perfumes-l551.html">Zara Man</a></li>
+                        <li><a href="https://www.lacoste.com/ca/en/lacoste/men/accessories/fragrance/">Lacoste</a></li>
+                        <li><a href="https://www.fragrancenet.com/cologne/giorgio-armani/armani-code/edt?cur=ca&gclid=Cj0KCQjwppSEBhCGARIsANIs4p6AoCHVYnYZBmJxbWikj8mpmIwCo7Yr20XqbOg22bpL_BzLdtnWehUaAhZ%2dEALw_wcB&mv_pc=gawca_pla_c_g_149315&utm_campaign=g&utm_medium=cpc&utm_source=google_ca#149315">Armani</a></li>
+                    </ul>
+                </div><!-- collapsible ends here -->
+
+            </section>
+
+            <footer data-role="footer" data-position="fixed" data-theme="b">
+                <h4>&copy Karan Sharma</h4>
+            </footer>
+        </div>
+
+        <!--Add Product page-->
+        <div data-role="page" id="pageAdd">
+            <header data-role="header" data-position="fixed" data-theme="b">
+                <h1>Add a Product</h1>
+                <div data-role="navbar" data-iconpos="top">
+                    <ul>
+                        <li><a href="#pageHome" data-icon="home" data-theme="b">Home</a></li>
+                        <li><a href="#pageAdd" data-icon="plus" data-theme="b" class="ui-btn-active ui-state-persist"
+                        >Add Product</a></li>
+                        <li><a href="#pageProduct" data-icon="grid" data-theme="b">Products</a></li>
+                        <li><a href="#pageLocations" data-icon="plus" data-theme="b">Our Locations</a></li>
+                        <li><a href="#pageAbout" data-icon="user" data-theme="b">About</a></li>
+                    </ul>
+                </div>
+            </header>
+
+            <section data-role="content">
+                <div id="divMain">
+                    <h2 align="center">Add Product</h2>
+                    <form id="formAddProduct" name="formAddProduct" data-ajax="false">
+                        <label for="txtNameAdd">Product Name </label>
+                        <input type="text" id="txtNameAdd" name="txtNameAdd"
+                               class="required" data-theme="a" data-clear-btn="true" placeholder="Enter Product Name">
+
+                        <label for="txtProductDescriptionAdd">Product Description </label>
+                        <input type="text" id="txtProductDescriptionAdd" name="txtProductDescriptionAdd"
+                               class="required" data-theme="a" data-clear-btn="true" placeholder="Enter Description">
+
+                        <label for="fieldposition">For</label>
+                        <fieldset data-role="controlgroup" data-type="horizontal" id="fieldposition">
+                            <input type="radio" id="prodForMenAdd" name="prodForGenderAdd"
+                                   data-theme="a"
+                                   data-iconpos="left" value="Men" checked>
+                            <label for="prodForMenAdd">Men</label>
+
+                            <input type="radio" id="prodForWomenAdd" name="prodForGenderAdd" data-theme="a"
+                                   data-iconpos="left" value="Women">
+                            <label for="prodForWomenAdd">Women</label>
+
+                        </fieldset>
+                        <label for="txtPriceAdd">Price</label>
+                        <input type="number" id="txtPriceAdd" name="txtPriceAdd"
+                               class="required" data-theme="a" data-clear-btn="true" placeholder="Enter price of the product">
+                        <label for="txtQuantityAdd">Quantity</label>
+                        <input type="number" id="txtQuantityAdd" name="txtQuantityAdd"
+                               class="required" data-theme="a" data-clear-btn="true" placeholder="Enter Quantity">
+
+                        <label for="txtTotalAdd">Total </label>
+                        <input type="text" id="txtTotalAdd" name="txtTotalAdd"
+                               data-theme="a" placeholder="Total (Calculated)" disabled>
+
+                        <button type="button" id="btnAdd" name="btnAdd" data-icon="plus" data-theme="b">
+                            Add
+                        </button>
+
+
+                    </form>
+                </div>
+            </section>
+
+            <footer data-role="footer" data-position="fixed" data-theme="b">
+                <h4>&copy Karan Sharma</h4>
+            </footer>
+        </div>
+
+        <!--Products page-->
+        <div data-role="page" id="pageProduct">
+            <header data-role="header" data-position="fixed" data-theme="b">
+                <h1>Products</h1>
+                <div data-role="navbar" data-iconpos="top">
+                    <ul>
+                        <li><a href="#pageHome" data-icon="home" data-theme="b">Home</a></li>
+                        <li><a href="#pageAdd" data-icon="plus" data-theme="b">Add Product</a></li>
+                        <li><a href="#pageProduct" data-icon="grid" data-theme="b" class="ui-btn-active ui-state-persist"
+                        >Products</a></li>
+                        <li><a href="#pageLocations" data-icon="plus" data-theme="b">Our Locations</a></li>
+                        <li><a href="#pageAbout" data-icon="user" data-theme="b">About</a></li>
+                    </ul>
+                </div>
+            </header>
+
+            <section data-role="content">
+                <h2 align="center">Your Product's List</h2>
+                <ul id="lvAll" data-role="listview" class="ui-listview-inset"></ul>
+
+                <button data-theme="b" id="clearDatabase">Clear List</button>
+            </section>
+
+            <footer data-role="footer" data-position="fixed" data-theme="b">
+                <h4>&copy Karan Sharma</h4>
+            </footer>
+        </div>
+
+        <!--Our Locations page-->
+        <div data-role="page" id="pageLocations" >
+            <header data-role="header" data-position="fixed" data-theme="b">
+                <h1>Our Locations</h1>
+                <div data-role="navbar" data-iconpos="top">
+                    <ul>
+                        <li><a href="#pageHome" data-icon="home" data-theme="b">Home</a></li>
+                        <li><a href="#pageAdd" data-icon="plus" data-theme="b">Add Product</a></li>
+                        <li><a href="#pageProduct" data-icon="grid" data-theme="b">Products</a></li>
+                        <li><a href="#pageLocations" data-icon="plus" data-theme="b" class="ui-btn-active ui-state-persist"
+                        >Our Locations</a></li>
+                        <li><a href="#pageAbout" data-icon="user" data-theme="b">About</a></li>
+                    </ul>
+                </div>
+            </header>
+
+            <section data-role="content">
+                <h2 align="center">Our Locations</h2>
+
+                <button type="button" id="btnShow" name="btnShow" data-icon="plus" data-iconpos="left"
+                        data-theme="a"
+                        data-inline="" class="ui-btn-active">Show
+                </button>
+
+                <fieldset data-role="controlgroup" data-type="horizontal">
+                    <input type="radio" id="radRoad" name="radType" checked="checked" data-theme="a" data-iconpos="left">
+                    <label for="radRoad">Road</label>
+
+                    <input type="radio" id="radSatellite" name="radType" data-theme="a" data-iconpos="left">
+                    <label for="radSatellite">Satellite</label>
+                    <input type="radio" id="radHybrid" name="radType" data-theme="a" data-iconpos="left">
+                    <label for="radHybrid">Hybrid</label>
+                    <input type="radio" id="radTerrain" name="radType" data-theme="a" data-iconpos="left">
+                    <label for="radTerrain">Terrain</label>
+
+                </fieldset>
+
+                <img src="" width="50%" height="50%" alt="map" id="mapHolder">
+
+                <div role="main" class="ui-content" id="map-canvas">
+
+            </section>
+
+            <footer data-role="footer" data-position="fixed" data-theme="b">
+                <h4>&copy Karan Sharma</h4>
+            </footer>
+
+        </div>
+
+        <!--About page-->
+        <div data-role="page" id="pageAbout" >
+            <header data-role="header" data-position="fixed" data-theme="b">
+                <h1>About</h1>
+                <div data-role="navbar" data-iconpos="top">
+                    <ul>
+                        <li><a href="#pageHome" data-icon="home" data-theme="b">Home</a></li>
+                        <li><a href="#pageAdd" data-icon="plus" data-theme="b">Add Product</a></li>
+                        <li><a href="#pageProduct" data-icon="grid" data-theme="b">Products</a></li>
+                        <li><a href="#pageLocations" data-icon="plus" data-theme="b">Our Locations</a></li>
+                        <li><a href="#pageAbout" data-icon="user" data-theme="b" class="ui-btn-active ui-state-persist"
+                        >About</a></li>
+                    </ul>
+                </div>
+            </header>
+            <section data-role="content">
+                <div align="center">
+                    <h2>About Me</h2>
+                    <h3>Name of the Developer for this app: Karan Ajaybhai Sharma</h3>
+                    <h3>Student Number: 8686452</h3>
+                    <h3>PROG2430 Programming Mobile Applications, Sec4</h3>
+                    <h3>Professor Reaz Ahmed</h3>
+                    <h3><u>My Final Project</u></h3>
+                </div>
+
+            </section>
+            <footer data-role="footer" data-position="fixed" data-theme="b">
+                <h4>&copy Karan Sharma</h4>
+            </footer>
+
+        </div>
+
+        <!--Products mod page-->
+        <div data-role="page" id="pageDetail">
+            <header data-role="header" data-position="fixed" data-theme="b">
+                <h1>Detail</h1>
+                <div data-role="navbar" data-iconpos="top">
+                    <ul>
+                        <li><a href="#pageHome" data-icon="home" data-theme="b">Home</a></li>
+                        <li><a href="#pageAdd" data-icon="plus" data-theme="b">Add Product</a></li>
+                        <li><a href="#pageProduct" data-icon="user" data-theme="b" class="ui-btn-active ui-state-persist"
+                        >Products</a></li>
+                        <li><a href="#pageLocations" data-icon="plus" data-theme="b">Our Locations</a></li>
+                        <li><a href="#pageAbout" data-icon="user" data-theme="b">About</a></li>
+                    </ul>
+                </div>
+            </header>
+
+            <section data-role="content">
+                <div id="divMainDetail">
+                    <h2 align="center">Modify a product</h2>
+                    <form id="frmModifyProduct" name="frmModifyProduct" data-ajax="false">
+
+                        <label for="txtId">Id </label>
+                        <input type="text" id="txtId" name="txtId"
+                               class="required" data-theme="a" data-clear-btn="true" placeholder="Enter ID">
+                            <label for="txtNameModify">Product Name </label>
+                            <input type="text" id="txtNameModify" name="txtNameModify"
+                                   class="required" data-theme="a" data-clear-btn="true" placeholder="Enter Product Name">
+
+                            <label for="txtDescriptionModify">Product Description </label>
+                            <input type="text" id="txtDescriptionModify" name="txtDescriptionModify"
+                                   class="required" data-theme="a" data-clear-btn="true" placeholder="Enter Description">
+
+                            <label for="fieldposition">For</label>
+                            <fieldset data-role="controlgroup" data-type="horizontal" id="fieldPositionMod">
+                                <input type="radio" id="prodForMenModify" name="prodForGenderModify"
+                                       data-theme="a"
+                                       data-iconpos="left" value="Men" checked>
+                                <label for="prodForMenModify">Men</label>
+
+                                <input type="radio" id="prodForWomenModify" name="prodForGenderModify" data-theme="a"
+                                       data-iconpos="left" value="Women">
+                                <label for="prodForWomenModify">Women</label>
+
+                            </fieldset>
+                            <label for="txtPriceModify">Price</label>
+                            <input type="number" id="txtPriceModify" name="txtPriceModify"
+                                   class="required" data-theme="a" data-clear-btn="true" placeholder="Enter price of the product">
+                            <label for="txtQuantityModify">Quantity</label>
+                            <input type="number" id="txtQuantityModify" name="txtQuantityModify"
+                                   class="required" data-theme="a" data-clear-btn="true" placeholder="Enter Quantity">
+
+                            <label for="txtTotalMod">Total </label>
+                            <input type="text" id="txtTotalMod" name="txtTotalMod"
+                                   data-theme="a" placeholder="Total (Calculated)" disabled>
+
+                        <div data-role="controlgroup" data-type="horizontal" align="center"><a data-role="button"
+                                                                                               data-icon="back"
+                                                                                               data-rel="back">
+                            Go to previous
+                        </a>
+                            <button type="button" id="btnUpdate" name="btnUpdate" data-icon="check" data-theme="b">
+                                Update
+                            </button>
+                            <button type="button" id="btnDelete" name="btnDelete" data-icon="minus" data-theme="b">
+                                Delete
+                            </button>
+                        </div>
+
+                        <!-- This Ends Here -->
+                        <!--<label for="txtId">Id </label>
+                        <input type="text" id="txtId" name="txtId"
+                               class="required" data-theme="a" data-clear-btn="true" placeholder="Enter ID">
+
+                        <label for="txtNameModify">Name </label>
+                        <input type="text" id="txtNameModify" name="txtNameModify"
+                               class="required" data-theme="a" data-clear-btn="true" placeholder="Enter Name">
+
+                        <label for="txtDescriptionModify">Full Name </label>
+                        <input type="text" id="txtDescriptionModify" name="txtDescriptionModify"
+                               class="required" data-theme="a" data-clear-btn="true" placeholder="Enter Full Name">
+
+                        <label for="fieldPositionMod">Position </label>
+                        <fieldset data-role="controlgroup" data-type="horizontal" id="fieldPositionMod">
+                            <input type="radio" id="prodForMenModify" name="prodForGenderModify" checked="checked"
+                                   data-theme="a"
+                                   data-iconpos="left" value="Defender">
+                            <label for="prodForMenModify">Defender</label>
+
+                            <input type="radio" id="prodForWomenModify" name="prodForGenderModify" data-theme="a"
+                                   data-iconpos="left" value="Striker">
+                            <label for="prodForWomenModify">Striker</label>
+                        </fieldset>
+                        <label for="txtPriceModify">Date of Birth </label>
+                        <input type="date" id="txtPriceModify" name="txtPriceModify"
+                               class="required" data-theme="a" data-clear-btn="true" placeholder="Enter Date of Birth">
+
+                        <div data-role="controlgroup" data-type="horizontal" align="center"><a data-role="button"
+                                                                                               data-icon="back"
+                                                                                               data-rel="back">
+                            Go to previous
+                        </a>
+                            <button type="button" id="btnUpdate" name="btnUpdate" data-icon="check" data-theme="b">
+                                Update
+                            </button>
+                            <button type="button" id="btnDelete" name="btnDelete" data-icon="minus" data-theme="b">
+                                Delete
+                            </button>
+                        </div>-->
+
+
+                    </form>
+                </div>
+
+            </section>
+            <footer data-role="footer" data-position="fixed" data-theme="b">
+                <h4>&copy Karan Sharma</h4>
+            </footer>
+        </div>
+
+    </body>
+</html>

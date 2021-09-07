@@ -1,0 +1,8 @@
+label.error {
+    color: red;
+    font-weight: bold;
+}
+div, #pageHome, #pageAbout, #pageAdd, #pageDetail, #pageLocations, #pageProduct{
+    background-color: #c4ffff;
+    font-family: Arial, sans-serif, Helvetica;
+}
